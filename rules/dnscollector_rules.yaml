@@ -1,0 +1,73 @@
+#
+# Copyright (C) 2022 The Falco Authors.
+#
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+- required_engine_version: 11
+
+- required_plugin_versions:
+  - name: dnscollector
+    version: 0.0.1
+
+# Example Rule on login in to DNS Collector. Disabled by default since it might be noisy
+- rule: DNS Request FORWARDER_QUERY Debugging
+  desc: Detected DNS Request FORWARDER_QUERY
+  condition: dnscollector.dnstap.operation = "FORWARDER_QUERY"
+  output: >
+    A DNS request type FORWARDER_QUERY has been logged (operation=%dnscollector.dnstap.operation,
+    rcode=%dnscollector.dns.rcode,
+    qtype=%dnscollector.dns.qtype,
+    query=%dnscollector.dns.qname,
+    source_ip=%dnscollector.network.query-ip,
+    response_ip=%dnscollector.network.response-ip)
+  priority: NOTICE
+  source: dnscollector
+  tags: [dnscollector]
+
+- rule: DNS Repeated Request Debugging
+  desc: Detected Repeated DNS Request
+  condition: dnscollector.dns.repeated > 1 and dnscollector.dnstap.operation = "CLIENT_QUERY"
+  output: >
+    Detected Repeated DNS Request (operation=%dnscollector.dnstap.operation,
+    repeated=%dnscollector.dns.repeated,
+    rcode=%dnscollector.dns.rcode,
+    qtype=%dnscollector.dns.qtype,
+    query=%dnscollector.dns.qname,
+    source_ip=%dnscollector.network.query-ip)
+  priority: WARNING
+  source: dnscollector
+  tags: [dnscollector]
+
+- rule: Suspecious DNS Request
+  desc: Suspecious DNS Request detected
+  condition: dnscollector.suspicious.score > 1
+  output: >
+    A suspecious DNS request was logged (operation=%dnscollector.dnstap.operation,
+    rcode=%dnscollector.dns.rcode,
+    qtype=%dnscollector.dns.qtype,
+    qname=%dnscollector.dns.qname,
+    query_ip=%dnscollector.network.query-ip,
+    response_ip=%dnscollector.network.response-ip,
+    suspicious_score=%dnscollector.suspicious.score,
+    malformed-pkt=%dnscollector.suspicious.malformed-pkt,
+    large-pkt=%dnscollector.suspicious.large-pkt,
+    long-domain=%dnscollector.suspicious.long-domain,
+    slow-domain=%dnscollector.suspicious.slow-domain,
+    unallowed-chars=%dnscollector.suspicious.unallowed-chars,
+    uncommon-qtypes=%dnscollector.suspicious.uncommon-qtypes,
+    excessive-number-labels=%dnscollector.suspicious.excessive-number-labels)
+  priority: WARNING
+  source: dnscollector
+  tags: [dnscollector]

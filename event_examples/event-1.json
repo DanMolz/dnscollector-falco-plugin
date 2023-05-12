@@ -1,0 +1,57 @@
+{
+  "network": {
+    "family": "IPv4",
+    "protocol": "UDP",
+    "query-ip": "10.0.0.161",
+    "query-port": "33449",
+    "response-ip": "192.168.6.221",
+    "response-port": "53",
+    "ip-defragmented": false,
+    "tcp-reassembled": false
+  },
+  "dns": {
+    "length": 64,
+    "opcode": 0,
+    "rcode": "NOERROR",
+    "qname": "www.thisisahackingattempt.com.gotya",
+    "qtype": "A",
+    "flags": {
+      "qr": false,
+      "tc": false,
+      "aa": false,
+      "ra": false,
+      "ad": false
+    },
+    "resource-records": {
+      "an": [],
+      "ns": [],
+      "ar": []
+    },
+    "malformed-packet": false,
+    "repeated": -1
+  },
+  "edns": {
+    "udp-size": 2048,
+    "rcode": 0,
+    "version": 0,
+    "dnssec-ok": 1,
+    "options": []
+  },
+  "dnstap": {
+    "operation": "FORWARDER_QUERY",
+    "identity": "-",
+    "version": "-",
+    "timestamp-rfc3339ns": "2023-05-01T01:44:06.07904876Z",
+    "latency": "0.000000"
+  },
+  "suspicious": {
+    "score": 0,
+    "malformed-pkt": false,
+    "large-pkt": false,
+    "long-domain": false,
+    "slow-domain": false,
+    "unallowed-chars": false,
+    "uncommon-qtypes": false,
+    "excessive-number-labels": false
+  }
+}
