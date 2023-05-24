@@ -1,0 +1,26 @@
+- name: dnscollector
+  type: plugin
+  registry: ghcr.io
+  repository: sysdigdan/dnscollector-plugin/plugin/dnscollector
+  description: Reads events from dnscollector Engine
+  home: https://github.com/SysdigDan/dnscollector-falco-plugin
+  keywords:
+    - dnscollector
+  license: Apache-2.0
+  mastertainers:
+    - name: Daniel Moloney 
+  sources:
+    - https://github.com/SysdigDan/dnscollector-falco-plugin
+- name: dnscollector-rules
+  type: rulesfile
+  registry: ghcr.io
+  repository: sysdigdan/dnscollector-plugin/ruleset/dnscollector
+  description: Rules for the dnscollector plugin
+  home: https://github.com/SysdigDan/dnscollector-falco-plugin/tree/master/rules
+  keywords:
+    - dnscollector
+  license: Apache-2.0
+  mastertainers:
+    - name: Daniel Moloney 
+  sources:
+    - https://github.com/SysdigDan/dnscollector-falco-plugin/tree/master/rules/dnscollector_rules.yaml
