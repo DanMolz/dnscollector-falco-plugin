@@ -1,2 +1,5 @@
 falco.yaml
 git_clean.sh
+dist
+.vscode
+lib*
