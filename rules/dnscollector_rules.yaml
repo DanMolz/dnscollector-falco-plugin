@@ -19,7 +19,7 @@
 
 - required_plugin_versions:
   - name: dnscollector
-    version: 0.0.1
+    version: 0.1.0
 
 # Example Rule on login in to DNS Collector. Disabled by default since it might be noisy
 - rule: DNS Request FORWARDER_QUERY Debugging

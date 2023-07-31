@@ -38,11 +38,11 @@ type Plugin struct {
 
 func (f *Plugin) Info() *plugins.Info {
 	return &plugins.Info{
-		ID:          999,
+		ID:          11,
 		Name:        pluginName,
 		Description: "Read DNS Collector Events",
 		Contact:     "github.com/falcosecurity/plugins",
-		Version:     "0.0.1",
+		Version:     "0.1.0",
 		EventSource: "dnscollector",
 	}
 }
